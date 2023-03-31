@@ -1,0 +1,20 @@
+.light .AccountTable {
+}
+
+.dark .AccountTable {
+  .ant-pagination {
+    .ant-pagination-item {
+      a {
+        color: #fff;
+      }
+    }
+    .ant-pagination-item-active {
+      a {
+        color: #000;
+      }
+    }
+    .ant-pagination-item-link {
+      color: #fff;
+    }
+  }
+}

@@ -1,24 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { publicRoutes } from "./routes/routes";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+
+import resetLocalStorage from "./function/resetLocalStorage";
 
 function App() {
+  const { accessToken, userId, isAdmin, username } = useSelector(
+    (state) => state.auth
+  );
+
+  useEffect(() => {
+    if (
+      !localStorage.getItem("accessToken") ||
+      !localStorage.getItem("userId")
+    ) {
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("userId", userId);
+      localStorage.setItem("username", username);
+
+      if (isAdmin) {
+        localStorage.setItem("isAdmin", "admin");
+      } else localStorage.setItem("isAdmin", "user");
+    }
+
+    if (
+      localStorage.getItem("accessToken") === "" ||
+      localStorage.getItem("userId") === ""
+    ) {
+      resetLocalStorage();
+    }
+  }, [accessToken, userId]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          {publicRoutes.map((route, index) => {
+            const Page = route.component;
+            return (
+              <Route key={index} path={route.path} element={<Page />}></Route>
+            );
+          })}
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

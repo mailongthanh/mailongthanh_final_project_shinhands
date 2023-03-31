@@ -1,0 +1,76 @@
+@import "../../scss/variables";
+
+.light.AppHeader {
+  display: flex;
+  justify-content: space-between;
+}
+.dark.AppHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.light .AppHeader {
+  &__Welcome {
+    flex: 6;
+    display: flex;
+    flex-direction: row;
+    font-size: $welcome-fs;
+  }
+
+  &__Avatar {
+    flex: 4;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+    .ant-switch {
+      margin-right: $mg;
+      background-color: black;
+
+      &.ant-switch-checked {
+        background-color: yellow;
+
+        &:hover {
+          background-color: yellow;
+        }
+      }
+
+      &:hover {
+        background-color: black;
+      }
+    }
+  }
+}
+
+.dark .AppHeader {
+  &__Welcome {
+    flex: 6;
+    display: flex;
+    flex-direction: row;
+    font-size: $welcome-fs;
+  }
+
+  &__Avatar {
+    flex: 4;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+    .ant-switch {
+      margin-right: $mg;
+      background-color: $purple;
+
+      &.ant-switch-checked {
+        background-color: yellow;
+
+        &:hover {
+          background-color: yellow;
+        }
+      }
+
+      &:hover {
+        background-color: $purple;
+      }
+    }
+  }
+}

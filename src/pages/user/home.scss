@@ -1,0 +1,172 @@
+@import "../../scss/variables";
+
+.light .Home {
+  &__Logo {
+    margin-top: $mg-top;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__Menu {
+  }
+
+  &__Header__container {
+    background-color: $header-lightmode-bg-color;
+    color: $text-lightmode-color;
+    display: flex;
+    margin: 16px 16px 0px 16px;
+    border-radius: 30px 30px 5px 5px;
+    box-shadow: $card-box-shadow-lightmode;
+  }
+
+  &__Header {
+    flex: 8px;
+    margin-left: $mg;
+  }
+}
+
+.dark .Home {
+  &__Logo {
+    margin-top: $mg-top;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__Menu {
+  }
+
+  &__Header__container {
+    background-color: $header-darkmode-bg-color;
+    display: flex;
+    color: $text-darkmode-color;
+    margin: 16px 16px 0px 16px;
+    border-radius: 30px 30px 5px 5px;
+    box-shadow: $card-box-shadow-darkmode;
+  }
+
+  &__Header {
+    flex: 8px;
+    margin-left: $mg;
+  }
+}
+
+//ANT DESIGN CUSTOMATION
+
+//MENU
+.ant-menu-light.ant-menu-root.ant-menu-inline {
+  background-color: $sider-background;
+  border: none;
+
+  .ant-menu-item-selected {
+    padding-left: 30px !important;
+    margin-left: 8px !important;
+    border-radius: 20px 0px 0px 20px;
+    width: calc(100% - 8px);
+    background-color: $content-background;
+    color: black !important;
+    box-shadow: $card-box-shadow;
+
+    svg {
+      color: $sider-background;
+    }
+
+    &::before {
+      position: absolute;
+      right: 0;
+      height: 10px;
+      width: 5px;
+      border-radius: 5px;
+      content: "";
+      background-color: $sider-background;
+    }
+  }
+}
+
+//MENU WHEN COLLAPSED ACTIVED
+.ant-layout .ant-layout-sider-children .ant-menu.ant-menu-inline-collapsed {
+  background-color: $sider-background;
+  border: none;
+
+  .ant-menu-item-selected {
+    display: flex;
+    align-items: center;
+    color: black !important;
+    box-shadow: $card-box-shadow;
+    padding-left: 30px !important;
+    margin-left: 8px !important;
+    border-radius: 20px 0px 0px 20px;
+    width: calc(100% - 8px);
+    background-color: $content-background;
+
+    &::before {
+      position: absolute;
+      right: 0;
+      height: 10px;
+      width: 10px;
+      border-radius: 5px 0 0 5px;
+      content: "";
+      background-color: $sider-background;
+    }
+  }
+}
+
+//MENU TOOLTIP WHEN COLLAPSED ACTIVED
+.ant-menu-inline-collapsed-tooltip {
+  display: none;
+}
+
+//ITEM
+.ant-menu-light .ant-menu-item {
+  margin: 20px 4px 20px 4px;
+  color: white;
+}
+
+//ITEM WHEN IS SELECTED
+// .ant-menu-light .ant-menu-item-selected {
+//   padding-left: 30px !important;
+//   margin-left: 8px !important;
+//   border-radius: 20px 0px 0px 20px;
+//   width: calc(100% - 8px);
+//   background-color: $content-background;
+//   color: black !important;
+//   box-shadow: $card-box-shadow;
+
+//   svg {
+//     color: $sider-background;
+//   }
+
+//   &::before {
+//     position: absolute;
+//     right: 0;
+//     height: 10px;
+//     width: 5px;
+//     border-radius: 5px;
+//     content: "";
+//     background-color: $sider-background;
+//   }
+// }
+
+//SUBITEM
+.ant-menu-light .ant-menu-submenu-selected > .ant-menu-submenu-title {
+  color: white;
+}
+
+.ant-menu-inline .ant-menu-submenu {
+  color: white;
+}
+
+.ant-menu-submenu-title {
+  color: white;
+}
+
+.ant-menu-submenu-popup .ant-menu-vertical > .ant-menu-item {
+  color: $sider-background;
+
+  .ant-menu-item-selected {
+    &::before {
+      display: none;
+    }
+  }
+}

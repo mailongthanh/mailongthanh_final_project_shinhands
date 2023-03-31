@@ -1,0 +1,55 @@
+@import "../../../scss/variables";
+
+.DepartmentBlock {
+  width: calc(100% / 3 - $mg);
+  margin-right: $mg;
+  margin-bottom: $mg;
+  &__container {
+    &-content {
+      border-radius: 5px 5px 0 0;
+      border: 1px solid black;
+      border: none;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+
+      &-txt {
+        flex: 5;
+      }
+
+      &-img {
+        display: flex;
+        justify-content: end;
+        flex: 5;
+
+        svg {
+          font-size: 50px;
+        }
+      }
+    }
+
+    &-navigate {
+      padding: 10px 0;
+      display: flex;
+      justify-content: center;
+      border: 1px solid black;
+      border-radius: 0 0 5px 5px;
+      border: none;
+      background-color: $layout-darkmode-bg-color;
+
+      &-txt {
+        margin-right: $mg;
+      }
+
+      &-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // background-color: $white;
+        // svg {
+        //   font-size: 10px;
+        // }
+      }
+    }
+  }
+}

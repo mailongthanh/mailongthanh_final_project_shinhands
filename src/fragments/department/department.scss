@@ -1,0 +1,9 @@
+@import "../../scss/variables";
+
+.Department {
+  &__list {
+    margin-top: $mg;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

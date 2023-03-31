@@ -1,0 +1,45 @@
+@import "../../scss/variables";
+.NotFound {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  padding: 40px;
+
+  &__container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    &-txt {
+      margin-left: 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex: 4;
+
+      h1 {
+        font-size: 70px;
+        margin-bottom: 15px;
+        color: $purple;
+      }
+
+      p {
+        font-size: 20px;
+      }
+    }
+
+    &-btn {
+      border-radius: 15px;
+      margin-top: 24px;
+      width: 150px;
+    }
+
+    &-img {
+      flex: 6;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}

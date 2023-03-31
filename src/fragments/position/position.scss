@@ -1,0 +1,24 @@
+@import "../../scss/variables";
+
+.Position {
+  // &__createPo {
+  //   display: flex;
+  //   justify-content: end;
+  //   margin-top: $mg-top;
+  //   margin-bottom: $mg;
+
+  //   &-input {
+  //     margin-right: $mg;
+  //     width: 50%;
+  //   }
+  // }
+
+  &__title {
+    margin-top: $mg;
+    margin-bottom: $mg;
+
+    h1 {
+      text-transform: uppercase;
+    }
+  }
+}

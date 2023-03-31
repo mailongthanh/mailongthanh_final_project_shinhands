@@ -1,0 +1,57 @@
+//color
+$header-background: #fff;
+$content-background: #f0f2f5;
+$sider-background: #a294fe;
+$text-primary-color: #050505;
+$text-secondary-color: #222831;
+
+$text-lightmode-color: #000;
+$text-darkmode-color: #fff;
+$layout-lightmode-bg-color: #f5f5f5;
+$layout-darkmode-bg-color: #1f1e1e;
+$container-lightmode-bg-color: #fff;
+$container-darkmode-bg-color: rgb(28, 28, 28);
+$header-lightmode-bg-color: #fff;
+$header-darkmode-bg-color: rgb(28, 28, 28);
+
+$black: #000;
+$white: #fff;
+$purple: #a294fe;
+
+//shadow
+$shadow-1: rgba(0, 0, 0, 0.1);
+$shadow-2: rgba(0, 0, 0, 0.2);
+
+//box-shadow
+$card-box-shadow: 0 12px 28px 0 $shadow-2, 0 2px 4px 0 $shadow-1;
+$card-box-shadow-lightmode: $card-box-shadow;
+$card-box-shadow-darkmode: 0 -2px 10px rgba(0, 0, 0, 1);
+
+//font-size
+$font-size1: 15px;
+$font-size2: 13px;
+$welcome-fs: 20px;
+
+//margin
+$mg: 15px;
+$mg-top: 20px;
+
+//hover-color
+$hover-color: #e54d16;
+
+//Breakpoints
+$mobile-width: 600px;
+$tablet-width: 1024px;
+
+:export {
+  text-lightmode-color: $text-lightmode-color;
+  text-darkmode-color: $text-darkmode-color;
+  layout-lightmode-bg-color: $layout-lightmode-bg-color;
+  layout-darkmode-bg-color: $layout-darkmode-bg-color;
+  container-lightmode-bg-color: $container-lightmode-bg-color;
+  container-darkmode-bg-color: $container-darkmode-bg-color;
+  card-box-shadow-lightmode: $card-box-shadow-lightmode;
+  card-box-shadow-darkmode: $card-box-shadow-darkmode;
+  header-lightmode-bg-color: $header-lightmode-bg-color;
+  header-darkmode-bg-color: $header-darkmode-bg-color;
+}
