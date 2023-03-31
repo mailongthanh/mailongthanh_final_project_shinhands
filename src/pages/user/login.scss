@@ -10,12 +10,11 @@
     width: calc(2 / 3 * 100%);
     border: none;
     border-radius: 5px 0 0 5px;
-    display: flex;
+
     background-color: white;
 
     &-loginform {
       padding: 40px;
-      width: 40%;
 
       &-welcometxt {
         margin-bottom: 24px;
@@ -31,7 +30,7 @@
     }
 
     &-welcomeswiper {
-      width: 60%;
+      width: 100%;
     }
   }
 }

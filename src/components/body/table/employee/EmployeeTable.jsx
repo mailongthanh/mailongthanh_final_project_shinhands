@@ -7,6 +7,8 @@ import Highlighter from "react-highlight-words";
 import { useDispatch, useSelector } from "react-redux";
 
 import EmployeeModal from "../../modal/update_modal/employeemodal/EmployeeModal";
+import { department } from "../../../../enums/department";
+import { positions } from "../../../../enums/positions";
 
 import { openModal } from "../../../../redux/actions/modal";
 import {
@@ -195,12 +197,12 @@ function EmployeeTable() {
 
     {
       title: "Position",
-      dataIndex: "positionid",
+      dataIndex: "position",
       width: "20%",
     },
     {
       title: "Department",
-      dataIndex: "departmentid",
+      dataIndex: "department",
       width: "20%",
     },
     {
@@ -232,21 +234,42 @@ function EmployeeTable() {
     },
   ];
 
+  const generateIDtoName = (target, id) => {
+    let name;
+
+    Object.keys(target).forEach((key) => {
+      if (target[key] === id) {
+        name = key;
+      }
+    });
+
+    return name;
+  };
+
   useEffect(() => {
     handleGetEmployees();
   }, [isUpdated]);
 
   return (
     <div className="EmployeeTable">
-      <Table
-        columns={columns}
-        loading={loading}
-        pagination={{ pageSize: 8 }}
-        dataSource={employees}
-        scroll={{
-          x: 1300,
-        }}
-      />
+      {employees && (
+        <Table
+          columns={columns}
+          loading={loading}
+          pagination={{ pageSize: 7 }}
+          dataSource={employees.map((item, index) => {
+            return {
+              ...item,
+              key: index,
+              department: generateIDtoName(department, item.departmentid),
+              position: generateIDtoName(positions, item.positionid),
+            };
+          })}
+          scroll={{
+            x: 1300,
+          }}
+        />
+      )}
 
       <EmployeeModal />
     </div>

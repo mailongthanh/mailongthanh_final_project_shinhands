@@ -11,7 +11,7 @@ function Overview() {
   const functionLst = [
     {
       key: "1",
-      label: "Staff",
+      label: "Employee",
       icon: <TeamOutlined />,
       className: "FunctionBlock-staff",
       navkey: "7",

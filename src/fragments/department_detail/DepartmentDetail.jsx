@@ -5,13 +5,14 @@ import { useLocation, useNavigate } from "react-router-dom";
 function DepartmentDetail() {
   const location = useLocation();
   const item = location.state;
+  console.log(item);
   return (
     <div className="DepartmentDetail">
       <div className="DepartmentDetail__title">
         <h1 className="font-face-qsb">Department Detail</h1>
       </div>
 
-      <DepartmentDetailTable id={item.id.id} />
+      <DepartmentDetailTable id={item.id} />
     </div>
   );
 }

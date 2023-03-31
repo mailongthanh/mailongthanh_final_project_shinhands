@@ -36,12 +36,6 @@ function LoginForm() {
     });
   };
 
-  const openNotificationWithIcon = (res) => {
-    api["error"]({
-      message: "Error",
-      description: res,
-    });
-  };
   useEffect(() => {
     if (item) {
       form.setFieldsValue({
@@ -68,8 +62,8 @@ function LoginForm() {
       } else {
         openFailedNotification(res);
       }
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      console.log("err", err);
     }
   };
 
@@ -115,6 +109,7 @@ function LoginForm() {
             placeholder="Password"
           />
         </Form.Item>
+
         <Form.Item>
           <Form.Item name="remember" valuePropName="checked" noStyle>
             <Checkbox className="font-face-qsm">Remember me</Checkbox>

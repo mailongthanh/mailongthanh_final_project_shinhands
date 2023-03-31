@@ -45,7 +45,7 @@ function DepartmentBlock({ name, id }) {
             shape="circle"
             size="small"
             icon={<ArrowRightOutlined />}
-            onClick={() => passDepartment({ id }, { name })}
+            onClick={() => passDepartment(id, name)}
           />
         </div>
       </div>

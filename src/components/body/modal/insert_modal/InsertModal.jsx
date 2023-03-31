@@ -1,23 +1,17 @@
 import React, { useEffect, useState } from "react";
+import "./insertmodal.scss";
 
 import {
-  AutoComplete,
   Button,
-  Cascader,
-  Checkbox,
   Col,
   Form,
   Input,
   InputNumber,
   Row,
   Select,
-  Radio,
   Slider,
   Modal,
 } from "antd";
-
-import { closeModal } from "../../../../redux/actions/modal";
-import { useDispatch, useSelector } from "react-redux";
 
 import { positions } from "../../../../enums/positions";
 import { department } from "../../../../enums/department";
@@ -79,21 +73,8 @@ function InsertModal(props) {
     console.log("search:", value);
   };
 
-  const dispatch = useDispatch();
-
-  // const onFinish = async (values) => {
-  //   //   await updateUser(data._id, values)
-  //   //     .then(() => {
-  //   //       openSuccessNotification();
-  //   //       localStorage.setItem("username", values.username);
-  //   //       dispatch(closeModal({ isUpdated: true }));
-  //   //     })
-  //   //     .catch(() => openFailedNotification());
-  // };
-
   const [form] = Form.useForm();
   const onFinish = async (values) => {
-    console.log("Received values of form: ", values);
     await createEmployee(values).then(() => {
       props.setOpen(false);
     });
@@ -151,7 +132,7 @@ function InsertModal(props) {
             <Col span={12}>
               <Slider
                 min={1}
-                max={20}
+                max={100}
                 onChange={ageHandler}
                 value={typeof inputValue === "number" ? inputValue : 0}
               />
@@ -159,7 +140,7 @@ function InsertModal(props) {
             <Col span={4}>
               <InputNumber
                 min={1}
-                max={20}
+                max={100}
                 style={{
                   margin: "0 16px",
                 }}

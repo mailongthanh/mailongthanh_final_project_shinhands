@@ -163,7 +163,7 @@ function Home() {
           style={siderStyle}
           breakpoint="md"
           onBreakpoint={() => {
-            setCollapsed(!collapsed);
+            setCollapsed(true);
           }}
         >
           <div className="Home__Logo">
