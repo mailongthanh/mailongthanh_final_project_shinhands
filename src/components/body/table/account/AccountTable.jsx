@@ -180,7 +180,7 @@ function AccountTable() {
     {
       title: "Action",
       dataIndex: "action",
-      width: "20%",
+      width: "10%",
       fixed: "right",
       render: (_, record) => (
         <Space>
@@ -265,6 +265,9 @@ function AccountTable() {
         })}
         loading={loading}
         pagination={{ pageSize: 8 }}
+        scroll={{
+          x: 1300,
+        }}
       />
 
       <UpdateModal isModalOpen={isOpen}></UpdateModal>

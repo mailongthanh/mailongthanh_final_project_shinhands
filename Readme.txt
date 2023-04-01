@@ -8,6 +8,8 @@ Sơ lược về project:
 			+ BackEnd: MongoDB, NodeJS.
 
 	. Các chức năng của trang web:
+			+ Xem thống kê.
+			+ Đổi theme (light/dark).
 			+ Đăng nhập và đăng ký tài khoản.
 			+ Phân quyền: Admin & User.
 			+ Thao tác trên web: List danh sách User theo dạng lưới (phân trang: 100 user thì mỗi 1 trang sẽ chứa từ 5 ~ 10 user)

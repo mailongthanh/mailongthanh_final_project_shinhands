@@ -2,6 +2,18 @@
 
 .DepartmentDetail {
   &__title {
+    display: flex;
+    align-items: center;
     margin-bottom: $mg;
+
+    span {
+      margin-right: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    h1 {
+      margin-left: 8px;
+    }
   }
 }

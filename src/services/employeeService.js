@@ -10,6 +10,11 @@ export const getEmployeeByDepartment = async (id) => {
   return get(url);
 };
 
+export const getEmployeeByPosition = async (id) => {
+  const url = `/employee/${id}/getByPosition`;
+  return get(url);
+};
+
 const { post } = Requests();
 export const createEmployee = async (employee) => {
   const url = "/employee/add";

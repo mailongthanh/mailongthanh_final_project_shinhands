@@ -8,15 +8,14 @@ import {
   ArrowRightOutlined,
 } from "@ant-design/icons";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Button } from "antd";
-import { SwitchKey } from "../../../redux/actions/switchkey";
 
 import { useNavigate } from "react-router-dom";
 
-function DepartmentBlock({ name, id }) {
-  const dispatch = useDispatch();
+function DepartmentBlock({ name, id, backgroundImg }) {
   const navigate = useNavigate();
+  const { theme } = useSelector((state) => state.theme);
 
   const passDepartment = (id, name) => {
     navigate(`/home/departmentdetail`, {
@@ -27,12 +26,23 @@ function DepartmentBlock({ name, id }) {
     });
   };
   return (
-    <div className="DepartmentBlock">
+    <div className={`${theme} DepartmentBlock`}>
       <div className="DepartmentBlock__container">
-        <div className="DepartmentBlock__container-content">
+        <div
+          className="DepartmentBlock__container-content"
+          style={{
+            height: "150px",
+            backgroundImage: `url(${backgroundImg})`,
+            backgroundSize: "cover",
+          }}
+        >
           <div className="DepartmentBlock__container-content-txt">
-            <h1 className="font-face-qsb">9</h1>
-            <span className="font-face-qsm">{name}</span>
+            <span
+              className="font-face-qsb"
+              style={{ textTransform: "uppercase" }}
+            >
+              {name}
+            </span>
           </div>
         </div>
 

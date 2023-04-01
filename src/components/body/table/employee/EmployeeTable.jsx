@@ -22,8 +22,9 @@ function EmployeeTable() {
   const [searchedColumn, setSearchedColumn] = useState("");
   const [employees, setEmployees] = useState();
   const searchInput = useRef(null);
+  const isAdmin = localStorage.getItem("isAdmin");
 
-  const { isOpen, isUpdated } = useSelector((state) => state.modal);
+  const { isUpdated } = useSelector((state) => state.modal);
   const dispatch = useDispatch();
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
@@ -159,11 +160,11 @@ function EmployeeTable() {
       ),
   });
 
-  const columns = [
+  const user_columns = [
     {
       title: "No",
       dataIndex: "key",
-      width: "5%",
+      width: "8%",
       defaultSortOrder: "ascend",
       sorter: (a, b) => a.key - b.key,
     },
@@ -182,7 +183,55 @@ function EmployeeTable() {
     {
       title: "Phone Number",
       dataIndex: "phonenumber",
+      width: "10%",
+    },
+    {
+      title: "Age",
+      dataIndex: "age",
+      width: "5%",
+    },
+    {
+      title: "Gender",
+      dataIndex: "gender",
+      width: "5%",
+    },
+
+    {
+      title: "Position",
+      dataIndex: "position",
+      width: "10%",
+    },
+    {
+      title: "Department",
+      dataIndex: "department",
       width: "20%",
+    },
+  ];
+
+  const admin_columns = [
+    {
+      title: "No",
+      dataIndex: "key",
+      width: "8%",
+      defaultSortOrder: "ascend",
+      sorter: (a, b) => a.key - b.key,
+    },
+    {
+      title: "Name",
+      dataIndex: "name",
+      width: "20%",
+      ...getColumnSearchProps("name"),
+    },
+    {
+      title: "Email",
+      dataIndex: "email",
+      width: "20%",
+      ...getColumnSearchProps("email"),
+    },
+    {
+      title: "Phone Number",
+      dataIndex: "phonenumber",
+      width: "15%",
     },
     {
       title: "Age",
@@ -192,13 +241,13 @@ function EmployeeTable() {
     {
       title: "Gender",
       dataIndex: "gender",
-      width: "20%",
+      width: "8%",
     },
 
     {
       title: "Position",
       dataIndex: "position",
-      width: "20%",
+      width: "10%",
     },
     {
       title: "Department",
@@ -208,7 +257,7 @@ function EmployeeTable() {
     {
       title: "Action",
       dataIndex: "action",
-      width: "20%",
+      width: "10%",
       fixed: "right",
       render: (_, record) => (
         <Space>
@@ -254,7 +303,7 @@ function EmployeeTable() {
     <div className="EmployeeTable">
       {employees && (
         <Table
-          columns={columns}
+          columns={isAdmin === "admin" ? admin_columns : user_columns}
           loading={loading}
           pagination={{ pageSize: 7 }}
           dataSource={employees.map((item, index) => {

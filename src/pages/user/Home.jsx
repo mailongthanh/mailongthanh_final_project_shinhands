@@ -37,6 +37,7 @@ const { Header, Sider, Content } = Layout;
 function Home() {
   const [collapsed, setCollapsed] = useState(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState("2");
+  const [disabled, setDisabled] = useState(false);
 
   const navigate = useNavigate();
   const { key } = useSelector((state) => state.switchkey);
@@ -158,7 +159,6 @@ function Home() {
         <Sider
           className="Home__Sider"
           trigger={null}
-          collapsible
           collapsed={collapsed}
           style={siderStyle}
           breakpoint="md"
@@ -199,11 +199,13 @@ function Home() {
           {/* HEADER */}
           <Header className="Home__Header__container">
             <span
+              className="collapsedIcon"
               style={{ cursor: "pointer" }}
               onClick={() => setCollapsed(!collapsed)}
             >
               {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             </span>
+
             <div className="Home__Header">
               <AppHeader />
             </div>

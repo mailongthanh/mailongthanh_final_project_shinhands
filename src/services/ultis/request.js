@@ -24,7 +24,7 @@ export const Requests = () => {
       return response.data;
     },
     (error) => {
-      return error.reponse.data;
+      return error.response.data;
     }
   );
 

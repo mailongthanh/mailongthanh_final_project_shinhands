@@ -2,25 +2,10 @@ import React from "react";
 import Chart from "chart.js/auto";
 import { Pie } from "react-chartjs-2";
 
-import { positions } from "../../../../enums/positions";
+import { department } from "../../../../enums/department";
 
-function PositionChart({ amount }) {
-  const labels = Object.keys(positions);
-  const data = {
-    labels: labels,
-    datasets: [
-      {
-        label: "Employee",
-        data: amount,
-        backgroundColor: [
-          "rgb(255, 99, 132)",
-          "rgb(54, 162, 235)",
-          "rgb(255, 205, 86)",
-        ],
-        hoverOffset: 4,
-      },
-    ],
-  };
+function DepartmentChart({ amount }) {
+  const labels = Object.keys(department);
   const options = {
     animation: false,
     plugins: {
@@ -36,14 +21,31 @@ function PositionChart({ amount }) {
       },
     },
   };
+
+  const data = {
+    labels: labels,
+    datasets: [
+      {
+        label: "Employee",
+        data: amount,
+        backgroundColor: [
+          "rgb(255, 99, 132)",
+          "rgb(54, 162, 235)",
+          "rgb(255, 205, 86)",
+          "#a294fe",
+        ],
+        hoverOffset: 4,
+      },
+    ],
+  };
   return (
     <div className="chart-container">
       <h2 className="font-face-qsb" style={{ marginBottom: "10px" }}>
-        Position
+        Department
       </h2>
       <Pie data={data} />
     </div>
   );
 }
 
-export default PositionChart;
+export default DepartmentChart;

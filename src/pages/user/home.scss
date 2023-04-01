@@ -24,6 +24,22 @@
     flex: 8px;
     margin-left: $mg;
   }
+
+  .collapsedIcon {
+  }
+}
+
+//responsive
+
+@media (max-width: 768px) {
+  .light .Home,
+  .dark .Home {
+    &__Header__container {
+      .collapsedIcon {
+        display: none;
+      }
+    }
+  }
 }
 
 .dark .Home {

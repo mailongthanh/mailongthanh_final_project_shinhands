@@ -1,13 +1,7 @@
 import React from "react";
 import "./functionblock.scss";
 
-import {
-  UserOutlined,
-  BankOutlined,
-  TeamOutlined,
-  FileOutlined,
-  ArrowRightOutlined,
-} from "@ant-design/icons";
+import { ArrowRightOutlined } from "@ant-design/icons";
 
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "antd";

@@ -7,6 +7,8 @@ import Highlighter from "react-highlight-words";
 
 import { getEmployeeByDepartment } from "../../../../services/employeeService";
 
+import { positions } from "../../../../enums/positions";
+
 function DepartmentDetailTable(props) {
   const [loading, setLoading] = useState(false);
   const [searchText, setSearchText] = useState("");
@@ -167,39 +169,56 @@ function DepartmentDetailTable(props) {
     {
       title: "Age",
       dataIndex: "age",
-      width: "10%",
+      width: "5%",
     },
     {
       title: "Gender",
       dataIndex: "gender",
-      width: "20%",
+      width: "10%",
     },
 
     {
       title: "Position",
-      dataIndex: "positionid",
-      width: "20%",
-    },
-    {
-      title: "Department",
-      dataIndex: "departmentid",
+      dataIndex: "position",
       width: "20%",
     },
   ];
 
+  const generateIDtoName = (target, id) => {
+    let name;
+
+    Object.keys(target).forEach((key) => {
+      if (target[key] === id) {
+        name = key;
+      }
+    });
+
+    return name;
+  };
+
   useEffect(() => {
-    console.log(props.id);
     handleGetEmployees();
   }, []);
 
   return (
-    <div className="EmployeeTable">
-      <Table
-        columns={columns}
-        loading={loading}
-        pagination={{ pageSize: 8 }}
-        dataSource={employees}
-      />
+    <div className="DepartmentDetailTable">
+      {employees && (
+        <Table
+          columns={columns}
+          loading={loading}
+          pagination={{ pageSize: 8 }}
+          dataSource={employees.map((item, index) => {
+            return {
+              ...item,
+              key: index,
+              position: generateIDtoName(positions, item.positionid),
+            };
+          })}
+          scroll={{
+            x: 1300,
+          }}
+        />
+      )}
     </div>
   );
 }

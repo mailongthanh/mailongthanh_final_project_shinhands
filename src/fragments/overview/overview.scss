@@ -1,5 +1,33 @@
-.Overview {
+@import "../../scss/variables";
+
+.light .Overview {
   &__functionList {
+  }
+
+  &__chartList {
+    &-position {
+      margin-right: 20px;
+      box-shadow: $card-box-shadow-lightmode;
+    }
+
+    &-department {
+      margin-right: 20px;
+      box-shadow: $card-box-shadow-lightmode;
+    }
+  }
+}
+
+.dark .Overview {
+  &__chartList {
+    &-position {
+      margin-right: 20px;
+      box-shadow: $card-box-shadow-darkmode;
+    }
+
+    &-department {
+      margin-right: 20px;
+      box-shadow: $card-box-shadow-darkmode;
+    }
   }
 }
 
