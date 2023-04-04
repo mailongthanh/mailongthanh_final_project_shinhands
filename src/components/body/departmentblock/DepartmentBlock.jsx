@@ -32,7 +32,7 @@ function DepartmentBlock({ name, id, backgroundImg }) {
           className="DepartmentBlock__container-content"
           style={{
             height: "150px",
-            backgroundImage: `url(${backgroundImg})`,
+            backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.5)), url(${backgroundImg})`,
             backgroundSize: "cover",
           }}
         >
@@ -48,7 +48,7 @@ function DepartmentBlock({ name, id, backgroundImg }) {
 
         <div className="DepartmentBlock__container-navigate">
           <span className="DepartmentBlock__container-navigate-txt font-face-qsb">
-            Department List
+            Department detail
           </span>
           <Button
             className="DepartmentBlock__container-navigate-btn"

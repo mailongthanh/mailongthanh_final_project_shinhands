@@ -8,42 +8,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { SmileOutlined, FrownOutlined } from "@ant-design/icons";
 import { updateUser } from "../../../../services/userService";
 
+import {
+  openFailedNotification,
+  openSuccessNotification,
+} from "../../../../function/openNotification";
+
 function UpdateModal(props) {
   const dispatch = useDispatch();
   const { isOpen, data } = useSelector((state) => state.modal);
 
-  const openSuccessNotification = () => {
-    notification.open({
-      message: "Your update was successful!",
-      duration: 2,
-      icon: (
-        <SmileOutlined
-          style={{
-            color: "green",
-          }}
-        />
-      ),
-    });
-  };
-
-  const openFailedNotification = () => {
-    notification.open({
-      message: "You are not allowed to do that!",
-      duration: 2,
-      icon: (
-        <FrownOutlined
-          style={{
-            color: "red",
-          }}
-        />
-      ),
-    });
-  };
-
   const onFinish = async (values) => {
     await updateUser(data._id, values)
       .then(() => {
-        openSuccessNotification();
+        openSuccessNotification("Successfully updated !!!");
         localStorage.setItem("username", values.username);
         dispatch(closeModal({ isUpdated: true }));
       })

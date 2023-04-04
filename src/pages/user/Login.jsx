@@ -6,7 +6,11 @@ import { Col, Row } from "antd";
 import LoginForm from "../../components/body/loginform/LoginForm";
 import WelcomeSwiper from "../../components/body/welcome_swiper/WelcomeSwiper";
 
+import resetLocalStorage from "../../function/resetLocalStorage";
+
 function Login() {
+  resetLocalStorage();
+
   return (
     <div className="Login">
       <div className="Login__container">

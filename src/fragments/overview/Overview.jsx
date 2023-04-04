@@ -3,23 +3,13 @@ import React, { useEffect, useState } from "react";
 import "./overview.scss";
 import FunctionBlock from "../../components/body/functionblock/FunctionBlock";
 import CardContainer from "../../components/body/card_container/CardContainer";
-
 import PositionChart from "../../components/body/chart/positionchart/PositionChart";
 import DepartmentChart from "../../components/body/chart/departmentchart/DepartmentChart";
 
 import { Col, Row } from "antd";
 import { UserOutlined, BankOutlined, TeamOutlined } from "@ant-design/icons";
 
-import {
-  getEmployeeByDepartment,
-  getEmployeeByPosition,
-} from "../../services/employeeService";
-import { department } from "../../enums/department";
-import { positions } from "../../enums/positions";
-
 function Overview() {
-  const [positionAmount, setPositionAmount] = useState([]);
-  const [departmentAmount, setDepartmentAmount] = useState([]);
   const functionLst = [
     {
       key: "1",
@@ -44,33 +34,6 @@ function Overview() {
     },
   ];
 
-  const getAmountinDepartments = async () => {
-    const Amount = [];
-    await Object.keys(department).forEach(async (key) => {
-      await getEmployeeByDepartment(department[key]).then((res) => {
-        Amount.push(res.length);
-      });
-    });
-
-    setDepartmentAmount(Amount);
-  };
-
-  const getAmountinPositions = async () => {
-    const Amount = [];
-    await Object.keys(positions).forEach(async (key) => {
-      await getEmployeeByPosition(positions[key]).then((res) => {
-        Amount.push(res.length);
-      });
-    });
-
-    setPositionAmount(Amount);
-  };
-
-  useEffect(() => {
-    getAmountinDepartments();
-    getAmountinPositions();
-  }, []);
-
   return (
     <div className="Overview">
       <div className="Overview__functionList">
@@ -90,8 +53,8 @@ function Overview() {
           <Col span={12}>
             <CardContainer className="Overview__chartList-position">
               <Row>
-                <Col span={12}>
-                  <PositionChart amount={positionAmount} />
+                <Col span={12} sm={24} md={12} lg={12}>
+                  <PositionChart />
                 </Col>
               </Row>
             </CardContainer>
@@ -100,8 +63,8 @@ function Overview() {
           <Col span={12}>
             <CardContainer className="Overview__chartList-department">
               <Row>
-                <Col span={12}>
-                  <DepartmentChart amount={departmentAmount} />
+                <Col span={12} sm={24} md={12} lg={12}>
+                  <DepartmentChart />
                 </Col>
               </Row>
             </CardContainer>

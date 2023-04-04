@@ -13,41 +13,15 @@ import {
 import { Button, Form, Input, notification } from "antd";
 
 import { createAccount } from "../../../services/accountService";
-
-import resetLocalStorage from "../../../function/resetLocalStorage";
+import {
+  openFailedNotification,
+  openSuccessNotification,
+} from "../../../function/openNotification";
 
 function SignUpForm() {
   const navigate = useNavigate();
 
-  //reset local storage
-  useEffect(() => {
-    resetLocalStorage();
-  }, []);
-
-  //register success
-  const openSuccessNotification = () => {
-    notification.open({
-      message: "Your register was successful!",
-      duration: 2,
-      icon: (
-        <SmileOutlined
-          style={{
-            color: "green",
-          }}
-        />
-      ),
-    });
-  };
-
-  //register error
-  const openErrorNotification = () => {
-    notification.open({
-      message: "Your register was error!",
-      duration: 2,
-      icon: <FrownOutlined style={{ color: "red" }} />,
-    });
-  };
-
+  //Pass data to login form
   const passUser = (user) => {
     navigate(`/`, {
       state: {
@@ -58,13 +32,20 @@ function SignUpForm() {
   };
 
   //Enter submit button
-  const onFinish = (values) => {
-    createAccount(values)
-      .then(() => {
-        openSuccessNotification();
-        passUser(values);
-      })
-      .catch(() => openErrorNotification());
+  const onFinish = async (values) => {
+    const res = await createAccount(values);
+    if (typeof res !== "string") {
+      openSuccessNotification("Your register was successful!");
+      passUser(values);
+    } else {
+      openFailedNotification(res);
+    }
+    // createAccount(values)
+    //   .then(() => {
+    //     openSuccessNotification();
+    //     passUser(values);
+    //   })
+    //   .catch(() => openErrorNotification());
   };
 
   return (
@@ -77,6 +58,7 @@ function SignUpForm() {
         }}
         onFinish={onFinish}
       >
+        {/* Email */}
         <Form.Item
           name="email"
           rules={[
@@ -95,6 +77,8 @@ function SignUpForm() {
             placeholder="Email"
           />
         </Form.Item>
+
+        {/* Username */}
         <Form.Item
           name="username"
           rules={[
@@ -109,6 +93,8 @@ function SignUpForm() {
             placeholder="Username"
           />
         </Form.Item>
+
+        {/* Password */}
         <Form.Item
           name="password"
           rules={[
@@ -116,12 +102,41 @@ function SignUpForm() {
               required: true,
               message: "Please input your Password!",
             },
+            { min: 5, message: "Username must be minimum 5 characters." },
+          ]}
+          hasFeedback
+        >
+          <Input.Password
+            prefix={<LockOutlined className="site-form-item-icon" />}
+            placeholder="Password"
+          />
+        </Form.Item>
+
+        {/*Confirm password */}
+        <Form.Item
+          name="confirm"
+          dependencies={["password"]}
+          hasFeedback
+          rules={[
+            {
+              required: true,
+              message: "Please confirm your password!",
+            },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue("password") === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(
+                  new Error("The two passwords that you entered do not match!")
+                );
+              },
+            }),
           ]}
         >
-          <Input
+          <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
-            type="password"
-            placeholder="Password"
+            placeholder="Confirm your password"
           />
         </Form.Item>
 

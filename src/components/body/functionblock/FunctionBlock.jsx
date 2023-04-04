@@ -18,8 +18,7 @@ function FunctionBlock(props) {
       <div className="FunctionBlock__container">
         <div className="FunctionBlock__container-content">
           <div className="FunctionBlock__container-content-txt">
-            <h1 className="font-face-qsb">9</h1>
-            <span className="font-face-qsm">{data.label}</span>
+            <span className="font-face-qsm"> {data.label}</span>
           </div>
           <div className="FunctionBlock__container-content-img">
             {data.icon}

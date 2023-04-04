@@ -12,31 +12,20 @@ import { FrownOutlined } from "@ant-design/icons";
 import { loginSuccess } from "../../../redux/actions/auth";
 import { loginAccount } from "../../../services/accountService";
 
+import { openFailedNotification } from "../../../function/openNotification";
+import resetLocalStorage from "../../../function/resetLocalStorage";
+
 function LoginForm() {
   const location = useLocation();
   const item = location.state;
   const [api, contextHolder] = notification.useNotification();
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
-
   const [form] = Form.useForm();
 
-  const openFailedNotification = (res) => {
-    notification.open({
-      message: res,
-      duration: 2,
-      icon: (
-        <FrownOutlined
-          style={{
-            color: "red",
-          }}
-        />
-      ),
-    });
-  };
-
+  //whenever return loginform, reset local storage
   useEffect(() => {
+    resetLocalStorage();
     if (item) {
       form.setFieldsValue({
         username: item.username,
@@ -48,7 +37,7 @@ function LoginForm() {
   const onFinish = async (values) => {
     try {
       const res = await loginAccount(values);
-      console.log("Datares", res, typeof res);
+
       if (typeof res != "string") {
         dispatch(
           loginSuccess({
@@ -69,7 +58,6 @@ function LoginForm() {
 
   return (
     <div className="LoginForm">
-      {contextHolder}
       <Form
         form={form}
         name="normal_login"

@@ -1,12 +1,11 @@
 import "./home.scss";
 
 import React, { useState, useEffect } from "react";
-import { Menu } from "antd";
-import { Layout } from "antd";
+import { Menu, Layout } from "antd";
+
 import {
   HomeOutlined,
   TeamOutlined,
-  DashboardOutlined,
   InsertRowRightOutlined,
   GoldOutlined,
   MenuFoldOutlined,
@@ -18,8 +17,10 @@ import {
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
+//component
 import AppHeader from "../../components/header/AppHeader";
 
+//fragments
 import Overview from "../../fragments/overview/Overview";
 import Account from "../../fragments/account/Account";
 import Position from "../../fragments/position/Position";
@@ -28,8 +29,10 @@ import Department from "../../fragments/department/Department";
 import DepartmentDetail from "../../fragments/department_detail/DepartmentDetail";
 import Logo from "../../components/body/logo/Logo";
 
+//variables scss
 import variables from "../../scss/_variables.scss";
 
+//switch key for changing tabs
 import { SwitchKey } from "../../redux/actions/switchkey";
 
 const { Header, Sider, Content } = Layout;
@@ -37,11 +40,9 @@ const { Header, Sider, Content } = Layout;
 function Home() {
   const [collapsed, setCollapsed] = useState(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState("2");
-  const [disabled, setDisabled] = useState(false);
-
-  const navigate = useNavigate();
   const { key } = useSelector((state) => state.switchkey);
   const { theme } = useSelector((state) => state.theme);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const siderStyle = {
@@ -138,6 +139,7 @@ function Home() {
     }
   };
 
+  //whenever key changes ==> navigate to fragment.
   useEffect(() => {
     const path = generateKeytoPath(key);
     setSelectedMenuItem(key);

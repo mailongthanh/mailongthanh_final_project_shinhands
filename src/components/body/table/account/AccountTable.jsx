@@ -8,16 +8,23 @@ import Highlighter from "react-highlight-words";
 import UpdateModal from "../../modal/update_modal/UpdateModal";
 import { openModal } from "../../../../redux/actions/modal";
 import { useDispatch, useSelector } from "react-redux";
-import "./accounttable.scss";
 import { getListUser, deleteUser } from "../../../../services/userService";
+import { logoutAccount } from "../../../../services/accountService";
+import { useNavigate } from "react-router-dom";
+
+import resetLocalStorage from "../../../../function/resetLocalStorage";
 
 import { openSuccessNotification } from "../../../../function/openNotification";
+import { logoutSuccess } from "../../../../redux/actions/auth";
+import { SwitchKey } from "../../../../redux/actions/switchkey";
+import { changeLightMode } from "../../../../redux/actions/theme";
 
 function AccountTable() {
   const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
+  const navigate = useNavigate();
   const searchInput = useRef(null);
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
@@ -234,12 +241,31 @@ function AccountTable() {
     }
   };
 
+  const logOutHandler = async (userId) => {
+    try {
+      await logoutAccount(userId).then(async () => {
+        await dispatch(logoutSuccess());
+        await dispatch(changeLightMode());
+        await dispatch(SwitchKey({ key: "2" }));
+        await resetLocalStorage();
+        navigate("/");
+      });
+    } catch (err) {
+      console.log(err.response.data);
+    }
+  };
+
   async function handleRemoveUser(userId) {
     try {
       const resDelete = await deleteUser(userId);
 
       if (resDelete) {
         openSuccessNotification(resDelete, 1.5);
+      }
+
+      if (isAdmin === "user") {
+        logOutHandler(userId);
+        navigate("/");
       }
 
       const res = await getListUser();
@@ -253,22 +279,24 @@ function AccountTable() {
 
   return (
     <div className={`${theme} AccountTable`}>
-      <Table
-        columns={columns}
-        dataSource={users.map((item, index) => {
-          return {
-            ...item,
-            key: index,
-            number: index + 1,
-            role: item.isAdmin ? "admin" : "user",
-          };
-        })}
-        loading={loading}
-        pagination={{ pageSize: 8 }}
-        scroll={{
-          x: 1300,
-        }}
-      />
+      {users.length !== 0 && (
+        <Table
+          columns={columns}
+          dataSource={users.map((item, index) => {
+            return {
+              ...item,
+              key: index,
+              number: index + 1,
+              role: item.isAdmin ? "admin" : "user",
+            };
+          })}
+          loading={loading}
+          pagination={{ pageSize: 8 }}
+          scroll={{
+            x: 1300,
+          }}
+        />
+      )}
 
       <UpdateModal isModalOpen={isOpen}></UpdateModal>
     </div>

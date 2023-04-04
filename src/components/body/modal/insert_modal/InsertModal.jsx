@@ -16,6 +16,9 @@ import {
 import { positions } from "../../../../enums/positions";
 import { department } from "../../../../enums/department";
 
+import { useDispatch } from "react-redux";
+import { closeModal } from "../../../../redux/actions/modal";
+
 import { createEmployee } from "../../../../services/employeeService";
 
 function InsertModal(props) {
@@ -51,6 +54,8 @@ function InsertModal(props) {
     },
   };
 
+  const dispatch = useDispatch();
+
   //Slider Age
   const [inputValue, setInputValue] = useState(1);
   const ageHandler = (newValue) => {
@@ -66,16 +71,13 @@ function InsertModal(props) {
   };
 
   // //Select department
-  const departmentHandler = (value) => {
-    console.log(`selected ${value}`);
-  };
-  const departmentSearch = (value) => {
-    console.log("search:", value);
-  };
+  const departmentHandler = (value) => {};
+  const departmentSearch = (value) => {};
 
   const [form] = Form.useForm();
   const onFinish = async (values) => {
     await createEmployee(values).then(() => {
+      dispatch(closeModal({ isUpdated: true }));
       props.setOpen(false);
     });
   };

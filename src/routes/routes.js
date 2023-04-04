@@ -5,11 +5,11 @@ import NotFound from "../pages/user/NotFound";
 
 const publicRoutes = [
   { path: "/", component: Login },
-  { path: "/home/*", component: Home },
   { path: "/signup", component: SignUp },
   { path: "*", component: NotFound },
+  // { path: "/home/*", component: Home },
 ];
 
-const privateRoutes = [];
+const privateRoutes = [{ path: "/home/*", component: Home }];
 
 export { publicRoutes, privateRoutes };

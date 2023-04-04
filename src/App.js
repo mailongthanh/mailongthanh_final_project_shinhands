@@ -1,16 +1,16 @@
 import "./App.css";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { publicRoutes } from "./routes/routes";
+import { privateRoutes, publicRoutes } from "./routes/routes";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
-
-import resetLocalStorage from "./function/resetLocalStorage";
+import { useEffect, useState } from "react";
 
 function App() {
   const { accessToken, userId, isAdmin, username } = useSelector(
     (state) => state.auth
   );
+
+  const [token, setToken] = useState();
 
   useEffect(() => {
     if (
@@ -24,13 +24,12 @@ function App() {
       if (isAdmin) {
         localStorage.setItem("isAdmin", "admin");
       } else localStorage.setItem("isAdmin", "user");
+
+      setToken(localStorage.getItem("accessToken"));
     }
 
-    if (
-      localStorage.getItem("accessToken") === "" ||
-      localStorage.getItem("userId") === ""
-    ) {
-      resetLocalStorage();
+    if (localStorage.getItem("accessToken")) {
+      setToken(localStorage.getItem("accessToken"));
     }
   }, [accessToken, userId]);
 
@@ -44,6 +43,14 @@ function App() {
               <Route key={index} path={route.path} element={<Page />}></Route>
             );
           })}
+
+          {token &&
+            privateRoutes.map((route, index) => {
+              const Page = route.component;
+              return (
+                <Route key={index} path={route.path} element={<Page />}></Route>
+              );
+            })}
         </Routes>
       </div>
     </Router>

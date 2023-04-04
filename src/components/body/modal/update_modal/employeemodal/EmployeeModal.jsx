@@ -120,12 +120,8 @@ function EmployeeModal(props) {
   };
 
   // //Select department
-  const departmentHandler = (value) => {
-    console.log(`selected ${value}`);
-  };
-  const departmentSearch = (value) => {
-    console.log("search:", value);
-  };
+  const departmentHandler = (value) => {};
+  const departmentSearch = (value) => {};
 
   const onFinish = async (values) => {
     await updateEmployee(data._id, values)
@@ -142,7 +138,10 @@ function EmployeeModal(props) {
     if (data) {
       form.setFieldsValue({
         email: data.email,
-        username: data.username,
+        name: data.name,
+        age: data.age,
+        phonenumber: data.phonenumber,
+        gender: data.gender,
       });
     }
   }, [data]);

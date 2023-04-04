@@ -3,8 +3,10 @@ import React from "react";
 import "./notfound.scss";
 
 import { Button } from "antd";
+import { useNavigate } from "react-router-dom";
 
 function NotFound() {
+  const navigate = useNavigate();
   return (
     <div className="NotFound">
       <div className="NotFound__container">
@@ -17,7 +19,7 @@ function NotFound() {
             type="primary"
             className="NotFound__container-btn font-face-qsb"
           >
-            <a href="/">Go Home Page</a>
+            <span onClick={() => navigate("/")}>Go Home Page</span>
           </Button>
         </div>
         <div className="NotFound__container-img">

@@ -1,29 +1,26 @@
 import "./appheader.scss";
 import React, { useEffect } from "react";
 
-import Icon, {
-  UserOutlined,
-  CaretDownOutlined,
-  CheckOutlined,
-  CloseOutlined,
-} from "@ant-design/icons";
+import Icon, { UserOutlined, CaretDownOutlined } from "@ant-design/icons";
 import { Avatar, Dropdown, Space, Switch } from "antd";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { logoutSuccess } from "../../redux/actions/auth";
 import { changeLightMode, changeDarkMode } from "../../redux/actions/theme";
-
-import { useNavigate } from "react-router-dom";
+import { SwitchKey } from "../../redux/actions/switchkey";
 
 import { logoutAccount } from "../../services/accountService";
-import { SwitchKey } from "../../redux/actions/switchkey";
 
 import resetLocalStorage from "../../function/resetLocalStorage";
 
 function AppHeader(props) {
   const userId = localStorage.getItem("userId");
   const userName = localStorage.getItem("username");
+  const { newData } = useSelector((state) => state.modal);
+  const { theme } = useSelector((state) => state.theme);
 
+  //-------ICON CUSTOMIZATION---------
   const SunSvg = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -51,11 +48,9 @@ function AppHeader(props) {
     </svg>
   );
   const MoonIcon = (props) => <Icon component={MoonSvg} {...props} />;
+  //------END ICON CUSTOMIZATION-------
 
-  const { newData } = useSelector((state) => state.modal);
-  const { theme } = useSelector((state) => state.theme);
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
 
   const logOutHandler = async (userId) => {
@@ -72,6 +67,7 @@ function AppHeader(props) {
     }
   };
 
+  //DROPDOWN ITEMS
   const items = [
     {
       label: (
@@ -93,6 +89,7 @@ function AppHeader(props) {
     },
   ];
 
+  //Whenever username change, update name on header
   useEffect(() => {}, [newData]);
 
   return (
